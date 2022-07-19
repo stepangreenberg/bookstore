@@ -10,6 +10,16 @@ services:
       - 8000:8000
     depends_on:
       - db
+    environment:
+      - "DJANGO_SECRET_KEY=django-insecure-mtu&ksveaq7j3uhms8f3m8w)e@b^)kj5yasj3yt8a6=gl1f*jw"
+      - "DJANGO_DEBUG=True"
+      - "DEFAULT_FROM_EMAIL=musman2007@mail.ru"
+      - "EMAIL_HOST=smtp.mail.ru"
+      - "EMAIL_HOST_USER=musman2007@mail.ru"
+      - "EMAIL_HOST_PASSWORD=SKQGTXRF5XCIfT539uhb"
+      - "EMAIL_PORT=465"
+      - "EMAIL_USE_TLS=True"
+
   db:
     image: postgres:13
     volumes:

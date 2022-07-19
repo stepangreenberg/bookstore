@@ -1,9 +1,14 @@
 from pathlib import Path
+from environs import Env
 
-BASE_DIR = Path(__file__).resolve().parent.parent
-SECRET_KEY = "django-insecure-mtu&ksveaq7j3uhms8f3m8w)e@b^)kj5yasj3yt8a6=gl1f*jw"
-DEBUG = True
-ALLOWED_HOSTS = []
+
+env=Env()
+env.read_env()
+
+BASE_DIR=Path(__file__).resolve().parent.parent
+SECRET_KEY = env("DJANGO_SECRET_KEY")
+DEBUG = env.bool("DJANGO_DEBUG")
+ALLOWED_HOSTS = [".herokuapp.com", "localhost", "127.0.0.1"]
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -53,14 +58,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "django_project.wsgi.application"
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "postgres",
-        "USER": "postgres",
-        "PASSWORD": "postgres",
-        "HOST": "db",
-        "PORT": 5432,
-    }
+    "default": env.dj_db_url("DATABASE_URL", default="postgres://postgres@db/postgres")
 }
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -108,3 +106,11 @@ ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
+
+DEFAULT_FROM_EMAIL = "admin@djangobookstore.com"
+
+EMAIL_HOST = env.str("EMAIL_HOST")
+EMAIL_HOST_USER = env.str("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = env.str("EMAIL_HOST_PASSWORD")
+EMAIL_PORT = env.int("EMAIL_PORT")
+EMAIL_USE_TLS = env.bool("EMAIL_USE_TLS")
