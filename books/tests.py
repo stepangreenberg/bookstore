@@ -8,7 +8,7 @@ from .models import Book, Review
 class BookTests(TestCase):
     @classmethod
     def setUpTestData(cls):
-        cls.user = get_user_model().objects.create(
+        cls.user = get_user_model().objects.create_user(
             username="reviewuser",
             email="reviewuser@email.com",
             password="testpass123",
