@@ -125,11 +125,6 @@ ACCOUNT_UNIQUE_EMAIL = True
 
 DEFAULT_FROM_EMAIL = "admin@djangobookstore.com"
 
-EMAIL_HOST = env.str("EMAIL_HOST")
-EMAIL_HOST_USER = env.str("EMAIL_HOST_USER")
-EMAIL_HOST_PASSWORD = env.str("EMAIL_HOST_PASSWORD")
-EMAIL_PORT = env.int("EMAIL_PORT")
-EMAIL_USE_TLS = env.bool("EMAIL_USE_TLS")
 
 # django-debug-toolbar
 import socket
